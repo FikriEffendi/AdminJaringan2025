@@ -14,8 +14,8 @@ Disusun oleh :
 
 Fikri Athanabil Efendi (31235000)<br>
 
-Politeknik Elektronika Negeri Surabaya<br>
-Departemen Teknik Informatika dan Komputer<br>
+Politeknik Elektronika Negeri Surabaya
+Departemen Teknik Informatika dan Komputer
 Program Studi Teknik Informatika<br>
 2023/2024
 
