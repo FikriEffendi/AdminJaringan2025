@@ -70,7 +70,7 @@ kill [-signal] pid
 ```
 
 Contoh percobaan:<br>
-<img src="images/gambar_1.png" alt="ss" width="600"/>
+<img src="images/Chapter_4/gambar_1.png" alt="ss" width="600"/>
 
 <br><br>
 
@@ -83,12 +83,12 @@ killall [nama-proses]
 ```
 
 Contoh percobaan:<br>
-<img src="images/gambar_2.2.png" alt="ss" width="600"/>
+<img src="images/Chapter_4/gambar_2.2.png" alt="ss" width="600"/>
 
 <br><br>
 
 - Perintah `pkill`
-  Perintah ini seperti killall tetapi memiliki lebih banyak opsi, seperti menghentikan proses berdasarkan pengguna (contoh: pkill -u ale menghentikan semua proses milik pengguna ale).<br>
+  Perintah ini seperti killall tetapi memiliki lebih banyak opsi, seperti menghentikan proses berdasarkan pengguna (contoh: pkill -u fikri menghentikan semua proses milik pengguna fikri).<br>
   syntax perintah `pkill`:
 
 ```bash
@@ -96,7 +96,7 @@ pkill [opsi] <pola>
 ```
 
 Contoh percobaan:<br>
-<img src="images/gambar_3.png" alt="ss" width="600"/>
+<img src="images/Chapter_4/gambar_3.png" alt="ss" width="600"/>
 
 ### ps: Pemantauan proses
 
@@ -108,7 +108,7 @@ ps [opsi]
 ```
 
 Contoh percobaan:<br>
-<img src="images/gambar_4.png" alt="ss" width="600"/>
+<img src="images/Chapter_4/gambar_4.png" alt="ss" width="600"/>
 
 ### top: Pemantauan secara interaktif
 
@@ -121,7 +121,7 @@ ps
 ```
 
 Contoh percobaan:<br>
-<img src="images/gambar_5.png" alt="ss" width="600"/>
+<img src="images/Chapter_4/gambar_5.png" alt="ss" width="600"/>
 
 Selain top, ada juga perintah htop, yang merupakan pemantau proses interaktif untuk sistem Unix. htop adalah aplikasi berbasis teks (untuk konsol atau terminal X) dan memerlukan library ncurses. Perintah ini mirip dengan top, tetapi memungkinkan pengguna untuk menggulir layar secara vertikal dan horizontal, sehingga semua proses yang berjalan di sistem beserta perintah lengkapnya dapat dilihat. htop juga memiliki antarmuka pengguna yang lebih baik dan lebih banyak opsi untuk operasi tertentu.
 
@@ -132,7 +132,7 @@ htop
 ```
 
 Contoh percobaan:<br>
-<img src="images/gambar_6.png" alt="ss" width="600"/>
+<img src="images/Chapter_4/gambar_6.png" alt="ss" width="600"/>
 
 ### nice dan renice: Merubah prioritas proses
 
@@ -149,9 +149,9 @@ nice -n nice_val [perintah]
 ```
 
 Contoh percobaan:<br>
-<img src="images/gambar_7.png" alt="ss" width="600"/>
+<img src="images/Chapter_4/gambar_7.png" alt="ss" width="600"/>
 
-<img src="images/gambar_8.png" alt="ss" width="600"/>
+<img src="images/Chapter_4/gambar_8.png" alt="ss" width="600"/>
 
 - renice: <br>
   Digunakan untuk mengubah nilai niceness dari proses yang sedang berjalan.<br>
@@ -162,7 +162,7 @@ renice -n nice_val -p pid
 ```
 
 Contoh percobaan:<br>
-<img src="images/gambar_9.png" alt="ss" width="600"/>
+<img src="images/Chapter_4/gambar_9.png" alt="ss" width="600"/>
 
 ### /proc filesystem
 
@@ -178,7 +178,7 @@ strace -p pid
 ```
 
 Contoh percobaan:<br>
-<img src="images/gambar_10.png" alt="ss" width="600"/>
+<img src="images/Chapter_4/gambar_10.png" alt="ss" width="600"/>
 
 ### Runaway Process
 
@@ -195,7 +195,7 @@ df -h
 ```
 
 Contoh percobaan:<br>
-<img src="images/gambar_11.png" alt="ss" width="600"/>
+<img src="images/Chapter_4/gambar_11.png" alt="ss" width="600"/>
 
 Untuk melihat proses yang dibuka oleh runaway process menggunakan perintah `lsof`.
 
@@ -204,7 +204,7 @@ lsof -p pid
 ```
 
 Contoh percobaan:<br>
-<img src="images/gambar_12.png" alt="ss" width="600"/>
+<img src="images/Chapter_4/gambar_12.png" alt="ss" width="600"/>
 
 ### Proses Periodik
 
