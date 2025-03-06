@@ -580,55 +580,54 @@ Contoh percobaan:<br>
 
 ACL yang lebih baru dan lebih powerful, didukung oleh Linux dan FreeBSD. Memiliki fitur tambahan seperti default ACL untuk mengatur ACL file/direktori baru.
 
-## Bab 6: Instalasi dan Manajemen Perangkat lunak
+## Bab 6: Instalasi dan Manajemen Perangkat Lunak
 
-### Instalasi Sistem operasi
+### Instalasi Sistem Operasi
 
-Distribusi Linux dan FreeBSD memiliki prosedur instalasi dasar yang cukup mudah. Untuk mesin fisik, Anda dapat melakukan booting dari CD, DVD, atau USB drive. Untuk mesin virtual, Anda dapat melakukan booting dari file ISO. Menginstal sistem operasi dasar dari media lokal cukup sederhana berkat aplikasi GUI yang memandu Anda melalui prosesnya.
+Distribusi Linux dan FreeBSD menawarkan proses instalasi dasar yang cukup sederhana. Untuk perangkat fisik, proses ini dapat dimulai dengan booting dari media seperti CD, DVD, atau USB drive. Sementara pada mesin virtual, proses booting dilakukan menggunakan file ISO. Instalasi sistem operasi menjadi lebih mudah dengan adanya aplikasi berbasis GUI yang membimbing pengguna selama proses berlangsung.
 
-### Instalasi dari Jaringan
+### Instalasi Melalui Jaringan
 
-Jika Anda harus menginstal OS pada lebih dari satu komputer, Anda akan cepat mencapai batas pendekatan menggunakan media lokal. Proses ini memakan waktu, rentan kesalahan, dan membosankan karena harus mengulangi langkah yang sama berulang kali. Solusinya adalah menginstal OS dari server jaringan. Ini adalah praktik umum di pusat data dan lingkungan cloud.
+Menginstal sistem operasi pada banyak komputer menggunakan media lokal bisa menjadi lambat, rawan kesalahan, dan monoton karena langkah yang sama perlu diulang-ulang. Solusi yang lebih efisien adalah instalasi melalui jaringan, yang umum digunakan di pusat data dan lingkungan cloud.
 
-Metode yang paling umum menggunakan **DHCP** dan **TFTP** untuk melakukan booting sistem tanpa media fisik. Sistem kemudian mengambil file instalasi OS dari server jaringan menggunakan **HTTP**, **FTP**, atau **NFS**. File instalasi bisa berada di server yang sama atau di server yang berbeda.
+Metode ini biasanya memanfaatkan **DHCP** dan **TFTP** untuk melakukan booting tanpa media fisik. Setelah booting, sistem akan mengunduh file instalasi dari server jaringan menggunakan protokol seperti **HTTP**, **FTP**, atau **NFS**. File instalasi bisa berada di satu server atau tersebar di beberapa server.
 
-Kita dapat menyiapkan instalasi sepenuhnya otomatis melalui **PXE** (Preboot eXecution Environment). Skema ini adalah standar dari Intel yang memungkinkan sistem melakukan booting dari antarmuka jaringan.
+Instalasi otomatis sepenuhnya dapat dilakukan melalui **PXE** (Preboot eXecution Environment). PXE adalah standar Intel yang memungkinkan sistem melakukan booting dari jaringan tanpa memerlukan media fisik. Teknologi ini bekerja melalui ROM pada kartu jaringan, menyediakan API standar yang digunakan oleh BIOS untuk mendukung netboot tanpa driver tambahan.
 
-PXE berfungsi seperti sistem operasi mini yang berada di ROM pada kartu jaringan. Ini mengekspos kemampuan jaringan melalui API standar yang digunakan oleh BIOS sistem. Kerjasama ini memungkinkan satu boot loader untuk melakukan netboot pada PC yang mendukung PXE tanpa harus menyediakan driver khusus untuk setiap kartu jaringan.
+### Sistem Manajemen Paket di Linux
 
-### Linux Package Management Systems
+Linux menggunakan dua format paket utama: RPM dan .deb. Distribusi seperti Red Hat, CentOS, SUSE, dan Amazon Linux menggunakan RPM, sedangkan Debian dan Ubuntu menggunakan .deb. Meskipun berbeda format, keduanya memiliki fungsi serupa.
 
-Dua format paket umum digunakan pada sistem Linux. Red Hat, CentOS, SUSE, Amazon Linux, dan beberapa distribusi lainnya menggunakan RPM. Debian dan Ubuntu menggunakan format .deb yang terpisah tetapi sama populernya. Kedua format ini secara fungsional serupa.
+Sistem manajemen paket ini bekerja dalam dua lapisan. Lapisan dasar berisi alat untuk instalasi, penghapusan, dan kueri paket, seperti `rpm` untuk RPM dan `dpkg` untuk .deb. Lapisan kedua terdiri dari alat yang mengelola dependensi, mencari paket, dan memperbarui seluruh sistem, seperti **yum** untuk RPM dan **APT** untuk .deb.
 
-Sistem pengemasan RPM dan .deb sekarang berfungsi sebagai alat manajemen konfigurasi dua lapis. Pada tingkat paling dasar adalah alat yang menginstal, menghapus, dan mengkueri paket: `rpm` untuk RPM dan `dpkg` untuk .deb.
+### Manajemen Paket Tingkat Tinggi
 
-Di atas perintah-perintah ini adalah sistem yang tahu cara menemukan dan mengunduh paket dari internet, menganalisis ketergantungan antar-paket, dan memutakhirkan semua paket pada sistem. yum (Yellowdog Updater, Modified) bekerja dengan sistem RPM. APT (Advanced Package Tool) berasal dari dunia .deb tetapi bekerja dengan baik untuk paket .deb dan RPM.
+Alat manajemen paket tingkat tinggi lebih sering digunakan oleh pengguna. Alat ini memungkinkan instalasi, penghapusan, pencarian, dan pemutakhiran paket dengan lebih mudah. Sistem ini juga terintegrasi dengan repositori perangkat lunak yang dikelola oleh distributor Linux.
 
-### High-Level Package Management
+- **Repositori Paket**  
+  Repositori perangkat lunak adalah kumpulan paket yang disediakan oleh distributor Linux. Konfigurasi default sistem manajemen paket biasanya terhubung ke server web atau FTP yang terpercaya.
 
-Alat manajemen paket tingkat tinggi adalah yang paling sering Anda gunakan. Alat ini memungkinkan Anda menginstal, menghapus, dan memutakhirkan paket. Mereka juga memungkinkan Anda mencari paket dan menampilkan daftar paket yang terinstal di sistem Anda.
+  Elemen repositori meliputi:
 
-- Package repositories
-  Distributor Linux mengelola repositori perangkat lunak yang bekerja sama dengan sistem manajemen paket yang mereka pilih. Konfigurasi default untuk sistem manajemen paket biasanya mengarah ke satu atau lebih server web atau FTP terkenal yang dikendalikan oleh distributor.
+  - **Release**: Snapshot konsisten dari kumpulan paket.
+  - **Komponen**: Subset perangkat lunak dalam satu release.
+  - **Arsitektur**: Kelas perangkat keras yang dapat menjalankan paket biner tertentu, seperti arsitektur i386 pada Fedora 20.
 
-  - Sebuah release adalah snapshot yang konsisten dari kumpulan paket.
-  - Sebuah komponen adalah subset perangkat lunak dalam suatu release.
-  - Arsitektur mewakili kelas perangkat keras, dengan asumsi bahwa mesin dalam kelas arsitektur yang sama cukup mirip sehingga dapat menjalankan biner yang sama. Arsitektur adalah instance dari release, misalnya, arsitektur i386 dari release Fedora 20.
+- **APT (Advanced Package Tool)**  
+  APT adalah sistem manajemen paket utama pada distribusi berbasis Debian seperti Ubuntu. APT terdiri dari berbagai alat, antara lain:
 
-- APT: Advanced Package Tool
-  APT adalah sekumpulan alat untuk mengelola paket Debian. Ini adalah sistem manajemen paket yang paling banyak digunakan untuk sistem berbasis Debian. APT adalah kumpulan alat yang bekerja bersama untuk menyediakan sistem manajemen paket yang lengkap. Alat-alat tersebut adalah:
+  - `apt-get`: Instalasi, penghapusan, dan pemutakhiran paket melalui baris perintah.
+  - `apt-cache`: Pencarian dan kueri cache paket.
+  - `apt-file`: Pencarian file di dalam paket.
+  - `apt-show-versions`: Menampilkan versi paket yang tersedia.
+  - `aptitude`: Antarmuka tingkat tinggi dengan fitur lebih lengkap dibandingkan apt-get.
+  - `apt-mirror`: Membuat mirror repositori paket.
 
-  - apt-get: Alat baris perintah untuk menangani paket. Ini melakukan tugas manajemen paket seperti instalasi, penghapusan, dan pemutakhiran.
-  - apt-cache: Alat untuk mencari dan mengkueri cache paket APT.
-  - apt-file: Alat untuk mencari file di dalam paket.
-  - apt-show-versions: Alat untuk menampilkan versi paket.
-  - aptitude: Antarmuka tingkat tinggi untuk sistem manajemen paket. Ini dapat digunakan untuk melakukan sebagian besar tugas yang bisa dilakukan oleh apt-get, dan banyak lagi.
-  - apt-mirror: Alat yang memungkinkan Anda membuat mirror dari repositori paket.
-    Aturan pertama dalam menggunakan APT pada sistem Ubuntu adalah mengabaikan keberadaan dselect, yang bertindak sebagai frontend untuk sistem paket Debian.
+  **Catatan:** Alat _dselect_ yang tersedia di sistem Debian tidak direkomendasikan pada sistem Ubuntu modern.
 
-- yum: Yellowdog Updater, Modified
-  yum adalah manajer paket untuk sistem Linux yang kompatibel dengan RPM. Ini adalah alat tingkat tinggi untuk mengelola paket. Yum melakukan resolusi dependensi saat menginstal, memperbarui, dan menghapus paket. Ini dapat mengelola paket dari repositori yang terinstal, dan juga dapat melakukan operasi baris perintah pada paket individu.
+- **yum (Yellowdog Updater, Modified)**  
+  yum digunakan untuk mengelola paket pada sistem berbasis RPM seperti Red Hat dan CentOS. Alat ini menangani resolusi dependensi secara otomatis saat instalasi, pemutakhiran, atau penghapusan paket. yum juga memungkinkan manajemen paket dari repositori yang terhubung ke sistem.
 
 ### Konfigurasi dan Lokalisasi Perangkat Lunak
 
-Mengadaptasi sistem ke lingkungan lokal (atau cloud) Anda adalah salah satu tantangan utama dalam administrasi sistem. Menangani masalah lokalisasi dengan cara yang terstruktur dan dapat direproduksi membantu menghindari terciptanya sistem "snowflake" yang sulit dipulihkan setelah insiden besar.
+Mengonfigurasi sistem agar sesuai dengan lingkungan lokal atau cloud adalah tantangan utama dalam administrasi sistem. Proses lokalisasi yang terstruktur dan terdokumentasi membantu menjaga sistem tetap konsisten dan memudahkan pemulihan saat terjadi insiden besar. Lokalisasi yang tidak terorganisir dapat menciptakan sistem _snowflake_ yang unik dan sulit direproduksi.
