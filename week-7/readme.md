@@ -50,16 +50,16 @@ Dengan menggunakan WinBox, buka terminal baru dan jalankan perintah berikut untu
 
 dimana x adalah nomer kelompok, dst-address adalah destination address dan gateaway adalah IP dari MikroTik-nya.
 
-![gambar_1_kel_6.jpeg.jpg](2.jpg)
+![](https://github.com/FikriEffendi/AdminJaringan2025/blob/main/week-7/gambar_1_kel_6.jpeg?raw=true)(2.jpg)
 
 Jika sudah ditambahkan semua seperti di atas, maka bisa di cek menggunakan Route List di WinBox dan seharusnya akan muncul seperti ini
 
-![gambar_2_kel_6.jpeg](5.jpg)
+![](https://github.com/FikriEffendi/AdminJaringan2025/blob/main/week-7/gambar_2_kel_6.jpeg?raw=true)(5.jpg)
 
 ### 2. Test ping ke device kelompok lain
 
 Setelah tahap pertama sudah selesai, maka bisa lakukan test ping seperti di bawah ini
 
-![gambar_3_kel_6.jpeg](3.jpg)
+![![](https://github.com/FikriEffendi/AdminJaringan2025/blob/main/week-7/gambar_3_kel_6.jpeg?raw=true)](3.jpg)
 
 Jika test ping seperti di atas sudah berhasil, dan status dari setiap test ping kosong, maka koneksi antar device beda kelompok sudah berhasil dilakukan.
