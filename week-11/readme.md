@@ -9,7 +9,7 @@
   <h3 style="text-align: center;">Disusun Oleh : </h3>
   <p style="text-align: center;">
     <strong>Nama: Fikri Athanabil Effendi</strong><br>
-    <strong>NRP: 3123500012 </strong><br>
+    <strong>NRP: 3123500020 </strong><br>
     <strong>Kelas: D3 IT A</strong>
   </p>
 <h3 style="text-align: center;line-height: 1.5">Politeknik Elektronika Negeri Surabaya<br>Departemen Teknik Informatika Dan Komputer<br>Program Studi Teknik Informatika<br>2023/2024</h3>
