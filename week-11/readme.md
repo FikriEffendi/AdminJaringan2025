@@ -9,7 +9,7 @@
   <h3 style="text-align: center;">Disusun Oleh : </h3>
   <p style="text-align: center;">
     <strong>Nama: Fikri Athanabil Effendi</strong><br>
-    <strong>NRP: 3123500020 </strong><br>
+    <strong>NRP: 3123500012 </strong><br>
     <strong>Kelas: D3 IT A</strong>
   </p>
 <h3 style="text-align: center;line-height: 1.5">Politeknik Elektronika Negeri Surabaya<br>Departemen Teknik Informatika Dan Komputer<br>Program Studi Teknik Informatika<br>2023/2024</h3>
@@ -66,7 +66,7 @@ Mail server adalah sistem yang menangani pengiriman dan penerimaan email. Dalam 
 
    ![Instalasi Postfix](images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.52.jpeg)
 
-2. Pilih konfigurasi "Internet Site" saat diminta:
+2. Saat instalasi, pilih konfigurasi "Internet Site":
    ![Konfigurasi Postfix](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.52(1).jpeg>)
 
 3. Masukkan nama domain untuk mail server:
@@ -82,39 +82,45 @@ Postfix adalah Mail Transfer Agent (MTA) yang bertugas mengirim dan menerima ema
    nano /etc/postfix/main.cf
    ```
 
-2. Konfigurasi parameter dasar Postfix:
+2. Konfigurasi parameter dasar Postfix seperti yang terlihat pada gambar berikut:
+   ![Konfigurasi Postfix](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.53(1).jpeg>)
 
-   - Uncomment dan sesuaikan `myhostname` dengan hostname server
-   - Uncomment dan sesuaikan `mydomain` dengan domain mail server
-   - Uncomment `myorigin = $mydomain`
-   - Uncomment `inet_interfaces = all`
-   - Sesuaikan `mydestination` untuk menerima email untuk domain lokal
-     ![Konfigurasi Postfix](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.53(1).jpeg>)
+   Pada gambar di atas, kita melakukan konfigurasi parameter dasar seperti:
 
-3. Konfigurasi jaringan dan alias:
+   - myhostname = mail.example.com
+   - mydomain = example.com
+   - myorigin = $mydomain
+   - inet_interfaces = all
 
-   - Uncomment `mynetworks_style = subnet`
-   - Tambahkan jaringan lokal ke `mynetworks`
-   - Uncomment `alias_maps` dan `alias_database`
-   - Uncomment `home_mailbox = Maildir/`
-     ![Konfigurasi Jaringan](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.53(2).jpeg>)
+3. Lanjutkan konfigurasi jaringan dan alias seperti yang terlihat pada gambar berikut:
+   ![Konfigurasi Jaringan](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.53(2).jpeg>)
 
-4. Konfigurasi SMTP Authentication:
+   Pada gambar di atas, kita mengkonfigurasi:
 
-   - Ubah `inet_protocols = ipv4` (jika hanya menggunakan IPv4)
-   - Tambahkan konfigurasi SMTP Auth:
-     ```
-     # SMTP Auth Settings
-     smtpd_sasl_type = dovecot
-     smtpd_sasl_path = private/auth
-     smtpd_sasl_auth_enable = yes
-     smtpd_sasl_security_options = noanonymous
-     smtpd_sasl_local_domain = $myhostname
-     smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
-     ```
-     ![SMTP Auth](images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.54.jpeg)
+   - mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+   - mynetworks_style = subnet
+   - mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+   - home_mailbox = Maildir/
 
-5. Tambahkan pengaturan keamanan tambahan untuk mencegah spam:
+4. Tambahkan konfigurasi SMTP Authentication seperti yang terlihat pada gambar berikut:
+   ![SMTP Auth](images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.54.jpeg)
+
+   Pada gambar di atas, kita menambahkan konfigurasi:
+
+   ```
+   # SMTP Auth Settings
+   smtpd_sasl_type = dovecot
+   smtpd_sasl_path = private/auth
+   smtpd_sasl_auth_enable = yes
+   smtpd_sasl_security_options = noanonymous
+   smtpd_sasl_local_domain = $myhostname
+   smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
+   ```
+
+5. Tambahkan pengaturan keamanan tambahan untuk mencegah spam seperti yang terlihat pada gambar berikut:
+   ![Anti-Spam Settings](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.54(1).jpeg>)
+
+   Pada gambar di atas, kita menambahkan konfigurasi:
 
    ```
    # Anti-Spam Settings
@@ -123,14 +129,15 @@ Postfix adalah Mail Transfer Agent (MTA) yang bertugas mengirim dan menerima ema
    message_size_limit = 10485760
    ```
 
-   ![Anti-Spam Settings](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.54(1).jpeg>)
-
 6. Terapkan perubahan dan restart Postfix:
+   ![Restart Postfix](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.54(2).jpeg>)
+
+   Pada gambar di atas, kita menjalankan perintah:
+
    ```bash
    newaliases
    systemctl restart postfix
    ```
-   ![Restart Postfix](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.54(2).jpeg>)
 
 ## Konfigurasi Dovecot
 
@@ -150,8 +157,13 @@ Dovecot adalah server POP3/IMAP yang memungkinkan pengguna mengakses email merek
    nano /etc/dovecot/dovecot.conf
    ```
 
-   - Uncomment `listen = *, ::` untuk mendengarkan pada semua antarmuka
-     ![Konfigurasi Dovecot](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.55(1).jpeg>)
+   ![Konfigurasi Dovecot](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.55(1).jpeg>)
+
+   Pada gambar di atas, kita mengubah konfigurasi untuk mendengarkan pada semua antarmuka dengan uncomment baris:
+
+   ```
+   listen = *, ::
+   ```
 
 3. Konfigurasi autentikasi Dovecot:
 
@@ -159,9 +171,12 @@ Dovecot adalah server POP3/IMAP yang memungkinkan pengguna mengakses email merek
    nano /etc/dovecot/conf.d/10-auth.conf
    ```
 
-   - Uncomment dan ubah `disable_plaintext_auth = no`
-   - Tambahkan `auth_mechanisms = plain login`
-     ![Auth Dovecot](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.55(2).jpeg>)
+   ![Auth Dovecot](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.55(2).jpeg>)
+
+   Pada gambar di atas, kita mengubah konfigurasi:
+
+   - disable_plaintext_auth = no
+   - auth_mechanisms = plain login
 
 4. Konfigurasi lokasi mailbox:
 
@@ -169,8 +184,13 @@ Dovecot adalah server POP3/IMAP yang memungkinkan pengguna mengakses email merek
    nano /etc/dovecot/conf.d/10-mail.conf
    ```
 
-   - Ubah `mail_location = maildir:~/Maildir`
-     ![Mail Location](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.55(3).jpeg>)
+   ![Mail Location](<images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.55(3).jpeg>)
+
+   Pada gambar di atas, kita mengubah konfigurasi:
+
+   ```
+   mail_location = maildir:~/Maildir
+   ```
 
 5. Konfigurasi socket untuk integrasi dengan Postfix:
 
@@ -178,15 +198,17 @@ Dovecot adalah server POP3/IMAP yang memungkinkan pengguna mengakses email merek
    nano /etc/dovecot/conf.d/10-master.conf
    ```
 
-   - Tambahkan konfigurasi berikut di bagian service auth:
-     ```
-     unix_listener /var/spool/postfix/private/auth {
-       mode = 0666
-       user = postfix
-       group = postfix
-     }
-     ```
-     ![Socket Configuration](images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.56.jpeg)
+   ![Socket Configuration](images/gambar_jaringan_2025/WhatsApp%20Image%202025-05-08%20at%2015.08.56.jpeg)
+
+   Pada gambar di atas, kita menambahkan konfigurasi di bagian service auth:
+
+   ```
+   unix_listener /var/spool/postfix/private/auth {
+     mode = 0666
+     user = postfix
+     group = postfix
+   }
+   ```
 
 6. Restart Dovecot untuk menerapkan perubahan:
    ```bash
